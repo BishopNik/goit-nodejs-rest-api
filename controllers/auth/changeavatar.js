@@ -74,7 +74,8 @@ const changeAvatar = async ({ user, file }, res) => {
 		expires: '01-01-2035',
 	});
 
-	const avatarURL = url.replace('https://storage.googleapis.com/node-hw4-edfa3.appspot.com/', '');
+	// const avatarURL = url.replace('https://storage.googleapis.com/node-hw4-edfa3.appspot.com/', '');
+	const avatarURL = url;
 
 	await User.findByIdAndUpdate(_id, { avatarURL });
 	await fs.unlink(tempUpload);
