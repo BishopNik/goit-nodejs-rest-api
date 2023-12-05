@@ -3,9 +3,9 @@
 const { User } = require('../../models');
 
 const getCurrent = async ({ user }, res) => {
-	const { _id: id } = user;
+	const { _id } = user;
 
-	const currentUser = await User.findOne({ id });
+	const currentUser = await User.findOne({ _id });
 
 	res.json({
 		avatarURL: currentUser.avatarURL,
