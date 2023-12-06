@@ -40,7 +40,6 @@ const login = async ({ body }, res) => {
 			avatarURL: user.avatarURL,
 			name: user.name,
 			email: user.email,
-			subscription: user.subscription,
 		},
 	});
 };
