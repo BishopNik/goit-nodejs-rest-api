@@ -43,7 +43,9 @@ contactSchema.post('save', handleMongooseError);
 
 const contactAddSchema = Joi.object({
 	name: Joi.string().required(),
-	gender: Joi.string().pattern(typeGender).required(),
+	gender: Joi.string()
+		.valid(...typeGender)
+		.required(),
 	email: Joi.string().pattern(emailRegexp).required(),
 	phone: Joi.string().required(),
 	favorite: Joi.boolean(),
