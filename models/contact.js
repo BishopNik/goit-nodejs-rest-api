@@ -5,7 +5,7 @@ const Joi = require('joi');
 const { handleMongooseError } = require('../utils');
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const typeGender = ['other', 'male', 'female', 'bussines'];
+const typeGender = ['other', 'male', 'female', 'business'];
 
 const contactSchema = new Schema(
 	{
@@ -15,7 +15,7 @@ const contactSchema = new Schema(
 		},
 		gender: {
 			type: String,
-			match: typeGender,
+			enum: typeGender,
 			required: true,
 		},
 		email: {

@@ -10,6 +10,7 @@ const removeContact = async ({ params, user }, res) => {
 		throw HttpError(404, 'Not found');
 	}
 	res.json({
+		id: contactId,
 		message: 'Delete success',
 	});
 };
