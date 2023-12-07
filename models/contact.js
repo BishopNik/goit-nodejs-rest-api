@@ -5,12 +5,18 @@ const Joi = require('joi');
 const { handleMongooseError } = require('../utils');
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const typeGender = ['other', 'male', 'female', 'bussines'];
 
 const contactSchema = new Schema(
 	{
 		name: {
 			type: String,
 			required: [true, 'Set name for contact'],
+		},
+		gender: {
+			type: String,
+			match: typeGender,
+			required: true,
 		},
 		email: {
 			type: String,
@@ -36,8 +42,8 @@ const contactSchema = new Schema(
 contactSchema.post('save', handleMongooseError);
 
 const contactAddSchema = Joi.object({
-	_id: Joi.string(),
 	name: Joi.string().required(),
+	gender: Joi.string().pattern(typeGender).required(),
 	email: Joi.string().pattern(emailRegexp).required(),
 	phone: Joi.string().required(),
 	favorite: Joi.boolean(),
