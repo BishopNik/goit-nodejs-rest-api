@@ -21,7 +21,6 @@ const contactSchema = new Schema(
 		email: {
 			type: String,
 			match: emailRegexp,
-			required: true,
 		},
 		phone: {
 			type: String,
@@ -46,7 +45,7 @@ const contactAddSchema = Joi.object({
 	gender: Joi.string()
 		.valid(...typeGender)
 		.required(),
-	email: Joi.string().pattern(emailRegexp).required(),
+	email: Joi.string().pattern(emailRegexp),
 	phone: Joi.string().required(),
 	favorite: Joi.boolean(),
 });
