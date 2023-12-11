@@ -74,6 +74,19 @@ const verifyEmailSchema = Joi.object({
 	email: Joi.string().pattern(emailRegexp).required(),
 });
 
+const deleteUserSchema = Joi.object({
+	id: Joi.string().required(),
+});
+
+const changeNameSchema = Joi.object({
+	name: Joi.string().required(),
+});
+
+const changePasswordSchema = Joi.object({
+	oldPassword: Joi.string().min(6).required(),
+	newPassword: Joi.string().min(6).required(),
+});
+
 const User = model('user', userRegisterSchema);
 
 module.exports = {
@@ -82,4 +95,7 @@ module.exports = {
 	loginSchema,
 	favoriteSchema,
 	verifyEmailSchema,
+	deleteUserSchema,
+	changeNameSchema,
+	changePasswordSchema,
 };

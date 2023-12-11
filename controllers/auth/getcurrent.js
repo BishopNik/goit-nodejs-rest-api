@@ -8,6 +8,7 @@ const getCurrent = async ({ user }, res) => {
 	const currentUser = await User.findOne({ _id });
 
 	res.json({
+		id: currentUser._id,
 		avatarURL: currentUser.avatarURL,
 		name: currentUser.name,
 		email: currentUser.email,

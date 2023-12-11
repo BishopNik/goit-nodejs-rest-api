@@ -7,6 +7,9 @@ const getCurrent = require('./getcurrent.js');
 const changeAvatar = require('./changeavatar.js');
 const reVerifyUser = require('./reverifyuser.js');
 const confirmVerify = require('./confirmverify.js');
+const deleteUser = require('./deleteuser.js');
+const changePassword = require('./changepassword.js');
+const changeName = require('./changename.js');
 
 module.exports = {
 	register,
@@ -16,4 +19,7 @@ module.exports = {
 	changeAvatar,
 	reVerifyUser,
 	confirmVerify,
+	deleteUser,
+	changePassword,
+	changeName,
 };

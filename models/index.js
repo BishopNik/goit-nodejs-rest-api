@@ -7,6 +7,9 @@ const {
 	loginSchema,
 	favoriteSchema,
 	verifyEmailSchema,
+	deleteUserSchema,
+	changeNameSchema,
+	changePasswordSchema,
 } = require('./user.js');
 
 module.exports = {
@@ -17,4 +20,7 @@ module.exports = {
 	loginSchema,
 	favoriteSchema,
 	verifyEmailSchema,
+	deleteUserSchema,
+	changeNameSchema,
+	changePasswordSchema,
 };
