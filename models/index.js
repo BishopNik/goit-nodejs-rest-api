@@ -10,6 +10,7 @@ const {
 	deleteUserSchema,
 	changeNameSchema,
 	changePasswordSchema,
+	repairPasswordSchema,
 } = require('./user.js');
 
 module.exports = {
@@ -23,4 +24,5 @@ module.exports = {
 	deleteUserSchema,
 	changeNameSchema,
 	changePasswordSchema,
+	repairPasswordSchema,
 };

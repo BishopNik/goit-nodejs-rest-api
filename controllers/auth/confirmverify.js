@@ -1,5 +1,7 @@
 /** @format */
 
+const { FRONT_URL_LOGIN } = process.env;
+
 const { User } = require('../../models');
 const { HttpError } = require('../../utils');
 
@@ -13,9 +15,11 @@ const confirmVerify = async ({ params }, res) => {
 
 	await User.findByIdAndUpdate(user._id, { verificationToken: '', verify: true });
 
-	res.status(200).json({
-		message: 'Verification successful',
-	});
+	res.redirect(FRONT_URL_LOGIN);
+
+	// res.status(200).json({
+	// 	message: 'Verification successful',
+	// });
 };
 
 module.exports = confirmVerify;
