@@ -10,8 +10,8 @@ const confirmVerify = require('./confirmverify.js');
 const deleteUser = require('./deleteuser.js');
 const changePassword = require('./changepassword.js');
 const changeName = require('./changename.js');
-const repairPasswordLink = require('./repairpasswordlink.js');
 const repairPassword = require('./repairpassword.js');
+const repairPasswordLink = require('./repairpasswordlink.js');
 
 module.exports = {
 	register,
