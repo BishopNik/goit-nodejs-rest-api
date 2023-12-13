@@ -9,7 +9,9 @@ const { SECRET_KEY } = process.env;
 
 const login = async ({ body }, res) => {
 	const { email, password } = body;
+
 	const user = await User.findOne({ email });
+
 	if (!user) {
 		throw HttpError(401, 'Email or password is wrong');
 	}

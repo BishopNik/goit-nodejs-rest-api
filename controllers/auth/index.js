@@ -24,6 +24,6 @@ module.exports = {
 	deleteUser,
 	changePassword,
 	changeName,
-	repairPasswordLink,
 	repairPassword,
+	repairPasswordLink,
 };
