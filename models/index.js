@@ -1,6 +1,6 @@
 /** @format */
 
-const { Contact, contactAddSchema } = require('./contact.js');
+const { Contact, ContactV2, contactAddSchema, contactAddSchemaV2 } = require('./contact.js');
 const {
 	User,
 	registerSchema,
@@ -15,7 +15,9 @@ const {
 
 module.exports = {
 	Contact,
+	ContactV2,
 	contactAddSchema,
+	contactAddSchemaV2,
 	User,
 	registerSchema,
 	loginSchema,

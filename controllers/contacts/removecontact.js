@@ -3,7 +3,7 @@
 const { Contact } = require('../../models');
 const { HttpError } = require('../../utils');
 
-const removeContact = async ({ params, user }, res) => {
+const removeContact = async ({ params }, res) => {
 	const { contactId } = params;
 	const data = await Contact.findByIdAndDelete(contactId);
 	if (!data) {
