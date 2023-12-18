@@ -1,6 +1,6 @@
 /** @format */
 
-const { Contact } = require('../../models');
+const { Contact } = require('../../../models');
 
 const addContact = async ({ user, body }, res) => {
 	const { _id: owner } = user;

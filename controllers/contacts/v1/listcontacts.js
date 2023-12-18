@@ -1,6 +1,6 @@
 /** @format */
 
-const { Contact } = require('../../models');
+const { Contact } = require('../../../models');
 
 const listContacts = async ({ user, query }, res) => {
 	const { _id: idUser } = user;

@@ -2,16 +2,16 @@
 
 const express = require('express');
 
-const { validateBody, isValidId, authenticate, checkOwner } = require('../../middlewares');
-const { contactAddSchema } = require('../../models');
+const { validateBody, isValidId, authenticate, checkOwner } = require('../../../middlewares');
+const { contactAddSchema } = require('../../../models');
 const {
 	listContacts,
 	getContactById,
 	removeContact,
 	addContact,
 	updateContact,
-} = require('../../controllers/contacts');
-const { ctrlWrapper } = require('../../utils');
+} = require('../../../controllers/contacts');
+const { ctrlWrapper } = require('../../../utils');
 
 const router = express.Router();
 

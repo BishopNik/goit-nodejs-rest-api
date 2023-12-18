@@ -1,7 +1,7 @@
 /** @format */
 
-const { Contact } = require('../../models');
-const { HttpError } = require('../../utils');
+const { Contact } = require('../../../models');
+const { HttpError } = require('../../../utils');
 
 const removeContact = async ({ params }, res) => {
 	const { contactId } = params;

@@ -1,7 +1,7 @@
 /** @format */
 
-const { ContactV2 } = require('../../models');
-const { HttpError } = require('../../utils');
+const { ContactV2 } = require('../../../models');
+const { HttpError } = require('../../../utils');
 
 const removeContactV2 = async ({ user, params }, res) => {
 	const { contactId } = params;

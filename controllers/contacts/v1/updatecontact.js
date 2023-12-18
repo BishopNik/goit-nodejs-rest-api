@@ -1,7 +1,7 @@
 /** @format */
 
-const { Contact } = require('../../models');
-const { HttpError } = require('../../utils');
+const { Contact } = require('../../../models');
+const { HttpError } = require('../../../utils');
 
 const updateContact = async ({ params, body }, res) => {
 	const { contactId } = params;

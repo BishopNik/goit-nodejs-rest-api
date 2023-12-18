@@ -1,6 +1,6 @@
 /** @format */
 
-const { ContactV2 } = require('../../models');
+const { ContactV2 } = require('../../../models');
 
 const addContactV2 = async ({ body, user }, res) => {
 	const { contact } = body;

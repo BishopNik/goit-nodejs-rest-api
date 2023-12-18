@@ -1,7 +1,7 @@
 /** @format */
 
 const { encode, decode } = require('base-64');
-const { HttpError } = require('../utils');
+const { HttpError } = require('../../utils');
 
 const { SECRET_KEY } = process.env;
 

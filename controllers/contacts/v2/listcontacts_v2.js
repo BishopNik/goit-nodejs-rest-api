@@ -1,5 +1,5 @@
 /** @format */
-const { ContactV2 } = require('../../models');
+const { ContactV2 } = require('../../../models');
 
 const listContactsV2 = async ({ user }, res) => {
 	const { userId } = user;
