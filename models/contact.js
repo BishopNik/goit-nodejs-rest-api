@@ -2,7 +2,7 @@
 
 const { Schema, model } = require('mongoose');
 const Joi = require('joi');
-const { handleMongooseError } = require('../utils');
+const { handleMongooseError, addUpdateSettings } = require('../utils');
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const typeGender = ['other', 'male', 'female', 'business'];
@@ -39,6 +39,8 @@ const contactSchema = new Schema(
 );
 
 contactSchema.post('save', handleMongooseError);
+contactSchema.pre('findOneAndUpdate', addUpdateSettings);
+contactSchema.post('findOneAndUpdate', handleMongooseError);
 
 const contactAddSchema = Joi.object({
 	name: Joi.string().required(),

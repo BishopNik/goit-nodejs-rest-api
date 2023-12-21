@@ -5,6 +5,7 @@ const ctrlWrapper = require('./ctrlWrapper.js');
 const handleMongooseError = require('./handleMongooseError.js');
 const sendMailer = require('./sendMailer.js');
 const { createMessage, recoveryMessage } = require('./createMessage.js');
+const addUpdateSettings = require('./errorModel.js');
 
 module.exports = {
 	HttpError,
@@ -13,4 +14,5 @@ module.exports = {
 	sendMailer,
 	createMessage,
 	recoveryMessage,
+	addUpdateSettings,
 };
