@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const { validateBody, authenticate, upload } = require('../../middlewares');
+const { validateBody, authenticate, upload, isEmptyBody } = require('../../middlewares');
 const {
 	registerSchema,
 	loginSchema,
@@ -31,22 +31,35 @@ const { ctrlWrapper } = require('../../utils');
 const authRouter = express.Router();
 
 // Регистрация
-authRouter.post('/register', validateBody(registerSchema), ctrlWrapper(register));
+authRouter.post('/register', isEmptyBody, validateBody(registerSchema), ctrlWrapper(register));
 // Логин
-authRouter.post('/login', validateBody(loginSchema), ctrlWrapper(login));
+authRouter.post('/login', isEmptyBody, validateBody(loginSchema), ctrlWrapper(login));
 // Логаут
-authRouter.post('/logout', authenticate, ctrlWrapper(logout));
+authRouter.post('/logout', isEmptyBody, authenticate, ctrlWrapper(logout));
 // Удаление юзера
-authRouter.post('/delete', validateBody(deleteUserSchema), ctrlWrapper(deleteUser));
+authRouter.delete('/delete', isEmptyBody, validateBody(deleteUserSchema), ctrlWrapper(deleteUser));
 // Рефреш приложения
 authRouter.get('/current', authenticate, ctrlWrapper(getCurrent));
 // Изменение аватар
-authRouter.patch('/avatar', authenticate, upload.single('avatar'), ctrlWrapper(changeAvatar));
+authRouter.patch(
+	'/avatar',
+	isEmptyBody,
+	authenticate,
+	upload.single('avatar'),
+	ctrlWrapper(changeAvatar)
+);
 // Изменение имени
-authRouter.patch('/name', authenticate, validateBody(changeNameSchema), ctrlWrapper(changeName));
+authRouter.patch(
+	'/name',
+	isEmptyBody,
+	authenticate,
+	validateBody(changeNameSchema),
+	ctrlWrapper(changeName)
+);
 // Изменение пароля
 authRouter.patch(
 	'/pass',
+	isEmptyBody,
 	authenticate,
 	validateBody(changePasswordSchema),
 	ctrlWrapper(changePassword)
@@ -54,12 +67,18 @@ authRouter.patch(
 // Получение линка на восстановление пароля
 authRouter.get('/repair/:id', ctrlWrapper(repairPasswordLink));
 // Востановление пароля
-authRouter.patch('/repair', validateBody(repairPasswordSchema), ctrlWrapper(repairPassword));
+authRouter.patch(
+	'/repair',
+	isEmptyBody,
+	validateBody(repairPasswordSchema),
+	ctrlWrapper(repairPassword)
+);
 // Потверждение почты юзера
 authRouter.get('/verify/:verificationToken', ctrlWrapper(confirmVerify));
 // Повторной запрос потверждения почты
 authRouter.post(
 	'/verify',
+	isEmptyBody,
 	validateBody(verifyEmailSchema, 'Missing required field email'),
 	ctrlWrapper(reVerifyUser)
 );
