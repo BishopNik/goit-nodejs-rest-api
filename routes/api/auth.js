@@ -35,7 +35,7 @@ authRouter.post('/register', isEmptyBody, validateBody(registerSchema), ctrlWrap
 // Логин
 authRouter.post('/login', isEmptyBody, validateBody(loginSchema), ctrlWrapper(login));
 // Логаут
-authRouter.post('/logout', isEmptyBody, authenticate, ctrlWrapper(logout));
+authRouter.post('/logout', authenticate, ctrlWrapper(logout));
 // Удаление юзера
 authRouter.delete('/delete', isEmptyBody, validateBody(deleteUserSchema), ctrlWrapper(deleteUser));
 // Рефреш приложения
