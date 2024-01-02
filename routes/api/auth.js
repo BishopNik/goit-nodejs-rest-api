@@ -2,12 +2,11 @@
 
 const express = require('express');
 
-const { validateBody, authenticate, upload, isEmptyBody } = require('../../middlewares');
+const { validateBody, authenticate, upload, isEmptyBody, isValidId } = require('../../middlewares');
 const {
 	registerSchema,
 	loginSchema,
 	verifyEmailSchema,
-	deleteUserSchema,
 	changeNameSchema,
 	changePasswordSchema,
 	repairPasswordSchema,
@@ -37,7 +36,7 @@ authRouter.post('/login', isEmptyBody, validateBody(loginSchema), ctrlWrapper(lo
 // Логаут
 authRouter.post('/logout', authenticate, ctrlWrapper(logout));
 // Удаление юзера
-authRouter.delete('/delete', isEmptyBody, validateBody(deleteUserSchema), ctrlWrapper(deleteUser));
+authRouter.delete('/:userId', isValidId, ctrlWrapper(deleteUser));
 // Рефреш приложения
 authRouter.get('/current', authenticate, ctrlWrapper(getCurrent));
 // Изменение аватар

@@ -3,11 +3,11 @@
 const { User } = require('../../models');
 const { Contact } = require('../../models');
 
-const deleteUser = async ({ body }, res) => {
-	const { id } = body;
+const deleteUser = async ({ params }, res) => {
+	const { userId } = params;
 
-	await User.findByIdAndDelete(id);
-	await Contact.deleteMany({ owner: id });
+	await User.findByIdAndDelete(userId);
+	await Contact.deleteMany({ owner: userId });
 
 	res.status(204).json({});
 };
