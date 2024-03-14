@@ -7,6 +7,7 @@ const authenticateV2 = require('./v2/authenticate_v2.js');
 const checkOwner = require('./checkowner.js');
 const upload = require('./upload.js');
 const isEmptyBody = require('./isemptybody.js');
+const oidcUser = require('./auth0.js');
 
 module.exports = {
 	validateBody,
@@ -16,4 +17,5 @@ module.exports = {
 	upload,
 	authenticateV2,
 	isEmptyBody,
+	oidcUser,
 };

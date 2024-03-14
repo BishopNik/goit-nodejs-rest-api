@@ -1,6 +1,7 @@
 /** @format */
 
 const express = require('express');
+const { requiresAuth } = require('express-openid-connect');
 
 const { validateBody, authenticate, upload, isEmptyBody, isValidId } = require('../../middlewares');
 const {
@@ -24,21 +25,30 @@ const {
 	changePassword,
 	repairPasswordLink,
 	repairPassword,
+	socialLogin,
 } = require('../../controllers/auth');
 const { ctrlWrapper } = require('../../utils');
 
 const authRouter = express.Router();
 
+// Social
+authRouter.get('/', requiresAuth(), ctrlWrapper(socialLogin));
+
 // Регистрация
 authRouter.post('/register', isEmptyBody, validateBody(registerSchema), ctrlWrapper(register));
-// Логин
+
+// // Логин
 authRouter.post('/login', isEmptyBody, validateBody(loginSchema), ctrlWrapper(login));
+
 // Логаут
 authRouter.post('/logout', authenticate, ctrlWrapper(logout));
+
 // Удаление юзера
 authRouter.delete('/:userId', isValidId, ctrlWrapper(deleteUser));
+
 // Рефреш приложения
 authRouter.get('/current', authenticate, ctrlWrapper(getCurrent));
+
 // Изменение аватар
 authRouter.patch(
 	'/avatar',
@@ -47,6 +57,7 @@ authRouter.patch(
 	upload.single('avatar'),
 	ctrlWrapper(changeAvatar)
 );
+
 // Изменение имени
 authRouter.patch(
 	'/name',
@@ -55,6 +66,7 @@ authRouter.patch(
 	validateBody(changeNameSchema),
 	ctrlWrapper(changeName)
 );
+
 // Изменение пароля
 authRouter.patch(
 	'/pass',
@@ -63,8 +75,10 @@ authRouter.patch(
 	validateBody(changePasswordSchema),
 	ctrlWrapper(changePassword)
 );
+
 // Получение линка на восстановление пароля
 authRouter.get('/repair/:id', ctrlWrapper(repairPasswordLink));
+
 // Востановление пароля
 authRouter.patch(
 	'/repair',
@@ -72,8 +86,10 @@ authRouter.patch(
 	validateBody(repairPasswordSchema),
 	ctrlWrapper(repairPassword)
 );
+
 // Потверждение почты юзера
 authRouter.get('/verify/:verificationToken', ctrlWrapper(confirmVerify));
+
 // Повторной запрос потверждения почты
 authRouter.post(
 	'/verify',

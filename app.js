@@ -3,6 +3,8 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+const { auth } = require('express-openid-connect');
+const { oidcUser } = require('./middlewares');
 
 require('dotenv').config();
 
@@ -13,6 +15,12 @@ const usersRouter = require('./routes/api/users');
 
 const app = express();
 
+const config = {
+	authRequired: false,
+	auth0Logout: true,
+	baseURL: `${process.env.BASE_URL}/api/auth`,
+};
+
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 app.use(logger(formatsLogger));
@@ -20,7 +28,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-app.use('/api/auth', authRouter);
+app.use('/api/auth', auth(config), oidcUser, authRouter);
 app.use('/api/contacts', contactsRouter);
 app.use('/api/users', usersRouter);
 

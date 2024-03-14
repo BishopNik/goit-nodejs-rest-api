@@ -85,4 +85,4 @@ const changeAvatar = async ({ user, file }, res) => {
 	});
 };
 
-module.exports = changeAvatar;
+module.exports = { changeAvatar, bucket };
