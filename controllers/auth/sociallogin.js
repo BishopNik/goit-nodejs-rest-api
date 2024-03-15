@@ -13,12 +13,12 @@ const { SECRET_KEY, FRONTEND_URL } = process.env;
 const socialLogin = async (req, res) => {
 	const { sid, name, picture, email, email_verified: verifyEmail } = req.oidc.user;
 	if (!sid) {
-		res.redirect(`${FRONTEND_URL}/My-Phonebook/main`);
+		res.redirect(`${FRONTEND_URL}/My-Phonebook/login`);
 		return;
 	}
 
 	const user = await User.findOne({ email });
-	const token = user ? jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: '12h' }) : null;
+	let token = user ? jwt.sign({ id: user._id }, SECRET_KEY, { expiresIn: '12h' }) : null;
 
 	// Загружаем изображение в Firebase Cloud Storage
 	let avatarURL;
@@ -49,15 +49,17 @@ const socialLogin = async (req, res) => {
 		: await User.findByIdAndUpdate(user._id, { token });
 
 	if (!user) {
-		const token = jwt.sign({ id: userLogin._id }, SECRET_KEY, { expiresIn: '12h' });
+		token = jwt.sign({ id: userLogin._id }, SECRET_KEY, { expiresIn: '12h' });
 		await User.findByIdAndUpdate(userLogin._id, { token });
 	}
 
-	if (!verifyEmail) {
+	if (verifyEmail === false) {
 		await sendMailer(createMessage(userLogin));
 	}
-	console.log('FRONTEND_URL', token);
-	res.redirect(`${FRONTEND_URL}/My-Phonebook/social_auth?token=${token}`);
+
+	token
+		? res.redirect(`${FRONTEND_URL}/My-Phonebook/social_auth?token=${token}`)
+		: res.redirect(`${FRONTEND_URL}/My-Phonebook/login`);
 };
 
 module.exports = socialLogin;
