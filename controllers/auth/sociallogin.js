@@ -56,7 +56,7 @@ const socialLogin = async (req, res) => {
 	if (!verifyEmail) {
 		await sendMailer(createMessage(userLogin));
 	}
-	console.log('FRONTEND_URL', FRONTEND_URL);
+	console.log('FRONTEND_URL', token);
 	res.redirect(`${FRONTEND_URL}/My-Phonebook/social_auth?token=${token}`);
 };
 
