@@ -12,7 +12,7 @@ const { SECRET_KEY, FRONTEND_URL } = process.env;
 
 const socialLogin = async (req, res) => {
 	const { sid, name, picture, email, email_verified: verifyEmail } = req.oidc.user;
-	if (!sid) {
+	if (!email) {
 		res.redirect(`${FRONTEND_URL}/My-Phonebook/login`);
 		return;
 	}
