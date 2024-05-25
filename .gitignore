@@ -127,5 +127,4 @@ dist
 .pnp.*
 
 # other
-*.json
 .DS_Store
