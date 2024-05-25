@@ -13,6 +13,9 @@ const contactsRouterV2 = require('./routes/api/v2/contacts');
 const authRouter = require('./routes/api/auth');
 const usersRouter = require('./routes/api/users');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 const app = express();
 
 const config = {
@@ -27,6 +30,8 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/auth', auth(config), oidcUser, authRouter);
 app.use('/api/contacts', contactsRouter);
